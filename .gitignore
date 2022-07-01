@@ -27,3 +27,10 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### IntelliJ project files
+.idea
+*.iml
+out
+target
+gen
