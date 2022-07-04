@@ -8,12 +8,9 @@ import java.sql.*;
  *
  */
 public class Example01 {
-    public static void main(String[] args) {
-        try {
-            testJdbc();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public static void main(String[] args) throws SQLException {
+//        testJdbc();
+//        deleteStudentById("20200002");
     }
 
 
@@ -76,6 +73,64 @@ public class Example01 {
 
 
 
+
+    }
+
+    public static void deleteStudentById(String sid) throws SQLException {
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            //1、加载、注册驱动
+            /*
+                MySQL版本8以下时
+                Class.forName("com.mysql.jdbc.Driver")
+             */
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //2、使用DriverManager类去获取数据库连接
+            /*
+                MySQL版本8以下时
+                不需要在URL中添加时区
+                Connection conn =  DriverManager.getConnection("jdbc:mysql://localhost:3306/lxc?","root","li123");
+
+                MySQL8+版本时
+                需要时区
+                中国共5个时区：Asia/ShangHai（UTC+8）、Asia/Harbin...
+                UTC:世界标准时间
+                东八区（UTC+8）
+                在数据库编码不是utf-8时是可以在url中加入"useUnicode=ture&characterEncoding=utf-8"解决中文乱码
+             */
+            conn =  DriverManager.getConnection("jdbc:mysql://localhost:3306/lxc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Harbin","root","li123");
+
+            //3、根据连接对象获取Statement  - 可以执行SQL语句的对象
+            stmt = conn.createStatement();
+
+            //4、编写SQL语句
+            //String sql = "select * from student";         //取出表中所有的数据（不推荐使用）
+            String sql = "delete from student where sid = " + sid ;   //按照表中列的名称取出数据
+
+
+            //5、执行SQL语句,获取结果集对象
+            int rows = stmt.executeUpdate(sql);   //执行查询
+            System.out.println("rows:" + rows);
+
+
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }finally{
+            /*
+                关闭
+                与IO流一样，使用后的东西都需要关闭！关闭的顺序是先得到的后关闭，后得到的先关闭。
+                rs。close();
+                stmt.close();
+                con.close();
+             */
+            stmt.close();
+            conn.close();
+        }
 
     }
 }
