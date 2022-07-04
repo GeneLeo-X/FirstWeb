@@ -9,7 +9,7 @@ import java.sql.*;
  */
 public class Example01 {
     public static void main(String[] args) throws SQLException {
-//        testJdbc();
+        testJdbc();
 //        deleteStudentById("20200002");
     }
 
@@ -46,7 +46,7 @@ public class Example01 {
 
             //4、编写SQL语句
             //String sql = "select * from student";         //取出表中所有的数据（不推荐使用）
-            String sql = "select id , name from student";   //按照表中列的名称取出数据
+            String sql = "select sid , sname from student";   //按照表中列的名称取出数据
 
 
             //5、执行SQL语句,获取结果集对象
@@ -76,6 +76,7 @@ public class Example01 {
 
     }
 
+    /*对表中的数据进行删除操作*/
     public static void deleteStudentById(String sid) throws SQLException {
         Connection conn = null;
         Statement stmt = null;
