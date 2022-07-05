@@ -10,3 +10,4 @@ db.properties - 属性配置文件
         (1)key的命名自定义，如果是多个单词，习惯使用点分隔。例如:jdbc.driver
         (2)value值不支持中文，如果需要使用非英文字符，将进行Unicode转换
 
+Example02 - SQL攻击演示
