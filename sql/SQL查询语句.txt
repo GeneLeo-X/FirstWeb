@@ -1,0 +1,40 @@
+#商品表：从表
+#商品类表：主表
+#主表存放从表的主键，称为外键
+
+#外键的约束
+
+#1、CASCADE - 级联删除 ，删除主表的主键、从表中存在此外键的条目也会被同时删除 -- 不推荐
+#2、RESTRICT与NO ACTION - 若主表的主键在从表中存在引用时，则不允许操作删除主表的数据 -- 推荐
+#3、SET NULL - 当主表的记录被删除时，从表引用的记录值会被置NULL
+
+#交叉查询 -- 不推荐使用
+
+#select p.pid , p.pname , p.cid pcid , c.cid ccid , c.cname from product p,category c;
+
+#内连接查询
+#隐式内连接 - 将一些关联的数据查询出来
+#select p.pid , p.pname , p.cid , c.cname from product p , category c where p.cid = c.cid;
+
+
+#显示内连接 -A inner join B on 条件
+#select p.pid , p.pname , p.cid , c.cname from product p inner join category c on p.cid = c.cid;
+
+#外连接 - 外连接在实际应用中可能左连接就完全够用（左、右连接可以转换只不过是查询是的顺序不同（哪个表在前哪个表在后））
+
+#左外连接 / 左连接 -- 会查询出左侧表的全部数据与 左侧表与右侧表满足条件的数据 OUTER -- 可以省略不写
+#select p.pid , p.pname ,p.cid , c.cname from product p left join category c on p.cid = c.cid;
+
+#右连接
+#select p.pid , p.pname ,p.cid , c.cname from category c right join  product p on p.cid = c.cid;
+
+#GROUP BY: 分组函数
+#ORDER BY：排序函数 默认是正序ASC 倒序为DESC 当想要实现根据多种类别元素排序时只需增加排序依据和排序的类别（正序/倒序）
+
+#select SUM(p.price) , c.cid ,c.cname from product p right join category c on p.cid = c.cid GROUP BY c.cname ORDER BY p.price ASC;
+#实现了同一类商品的单价加和后，按价格升序分类显示
+
+#查询某个分类下面的商品数量
+#select count(p.cid) , c.cid , c.cname from category c left join product p on c.cid = p.cid GROUP BY c.cname;
+
+
