@@ -4,20 +4,35 @@ import Demo02.bean.Product;
 import Demo02.pool.C3p0Pool;
 import Demo02.pool.MyConnectionPool;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Example03 {
     public static void main(String[] args) {
-        System.out.println(getProductList());
-        System.out.println(deleteProductById(6));
+
+
+        System.out.println(getProductList());//获取商品列表
+        System.out.println("----------------------------------");
+
+        System.out.println(deleteProductById(6L));//删除指定商品
+        System.out.println("-----------------------------------");
+
+        Product product = new Product();
+        product.setPrice(new BigDecimal(123));
+        product.setPname("精品黄瓜");
+        product.setCid(new Long(4L));
+
+        addProduct(product);//添加商品
+
 
     }
 
+    /**
+     * 获取商品列表
+     * @return
+     */
     public static List<Product> getProductList(){
         List<Product> productList = new ArrayList<>();
         try {
@@ -69,6 +84,29 @@ public class Example03 {
             throw new RuntimeException(e);
 
         }
+
+    }
+
+    /**
+     * 添加商品
+     * @param product
+     * @return
+     */
+    public static Integer addProduct(Product product){
+        int rows;
+        try {
+            Connection conn = C3p0Pool.getConnection();
+            String sql = "insert into product(pname , price , cid)value (?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,product.getPname());
+            pstmt.setBigDecimal(2,product.getPrice());
+            pstmt.setLong(3,product.getCid());
+            rows = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rows;
 
     }
 
