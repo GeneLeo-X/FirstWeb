@@ -11,3 +11,7 @@ db.properties - 属性配置文件
         (2)value值不支持中文，如果需要使用非英文字符，将进行Unicode转换
 
 Example02 - SQL攻击演示
+
+pool - 连接池
+
+Example03 - 连接池测试
