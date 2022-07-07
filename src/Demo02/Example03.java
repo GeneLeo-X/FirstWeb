@@ -96,6 +96,7 @@ public class Example03 {
         int rows;
         try {
             Connection conn = C3p0Pool.getConnection();
+            //在添加时间时可以在sql语句中使用now()方法调出当前时间
             String sql = "insert into product(pname , price , cid)value (?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,product.getPname());
