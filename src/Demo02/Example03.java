@@ -2,6 +2,7 @@ package Demo02;
 
 import Demo02.bean.Product;
 import Demo02.pool.C3p0Pool;
+import Demo02.pool.DbcpPool;
 import Demo02.pool.MyConnectionPool;
 
 import java.math.BigDecimal;
@@ -25,6 +26,8 @@ public class Example03 {
         product.setCid(new Long(4L));
 
         addProduct(product);//添加商品
+        System.out.println("------------------------------------");
+        System.out.println(getProductByPid(7L));
 
 
     }
@@ -109,6 +112,34 @@ public class Example03 {
         }
         return rows;
 
+    }
+
+    /**
+     * 使用Dbcp连接池对数据库进行查询操作，根据商品的pid查询并返回product对象
+     * @param pid
+     * @return
+     */
+    public static Product getProductByPid(Long pid){
+        Product product = null;
+        try {
+            Connection conn = DbcpPool.getConnection();
+            String sql = "select p.pid , p.pname , p.price , p.cid" + ", p.create_time as createTime from product p where pid = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1,pid);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                product = new Product();
+                product.setCid(rs.getLong("cid"));
+                product.setPname(rs.getString("pname"));
+                product.setPrice(rs.getBigDecimal("price"));
+                product.setCreateTime(rs.getString("createTime"));
+                product.setPid(pid);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return product;
     }
 
 
