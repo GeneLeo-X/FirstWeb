@@ -2,6 +2,7 @@ package Demo02.pool;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 
 
@@ -58,6 +59,14 @@ public class C3p0Pool {
             throw new RuntimeException(e);
         }
 
+    }
+
+    /**
+     * 对外提供C3P0连接池的数据源
+     * @return
+     */
+    public static DataSource getDataSource(){
+        return dataSource;
     }
 
 
