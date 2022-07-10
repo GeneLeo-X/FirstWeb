@@ -61,7 +61,7 @@ public class Example01 {
              */
             //数据库列的索引从1开始
             while (rs.next()){
-                System.out.println(rs.getInt("id")+" "+rs.getString("name"));
+                System.out.println(rs.getInt("sid")+" "+rs.getString("sname"));
             }
 
 

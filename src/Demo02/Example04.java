@@ -68,6 +68,7 @@ public class Example04 {
      */
     public static Order getOrderByOno(String ono){
 
+
         try {
             QueryRunner qr = new QueryRunner(C3p0Pool.getDataSource());
             String sql = "select o.oid , o.ono , o.create_time createTime , o.total_price as totalPrice from t_order o where o.ono = ?";
