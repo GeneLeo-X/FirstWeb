@@ -10,6 +10,18 @@
         <welcome-file>
             Test.html
         </welcome-file>
-</welcome-file-list>
+    </welcome-file-list>
 
+    <servlet>
+        <!--Servlet-name：起的名称是为了 Servlet-mapping里面应用的-->
+        <servlet-name>quick</servlet-name>
+        <!-- servlet-class 配置的类一定是Servlet类 -->
+        <servlet-class>Demo03.QuickServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>quick</servlet-name>
+        <!--路由、路径-->
+        <url-pattern>/quickServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

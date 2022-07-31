@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
+xml详细介绍传送门：
+https://blog.csdn.net/aidem_brown/article/details/82217481?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165925109916781647533233%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165925109916781647533233&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-82217481-null-null.142^v35^new_blog_pos_by_title&utm_term=XML&spm=1018.2226.3001.4187
 1、注释与HTML一致
 2、xml文件必须以<?xml ?>开始（改行代码必须放于1行1列,而且不能有空格）
 3、version:版本号只能写1.0
 4、编码可以修改,也可以省略
 5、标签是自定义的，但是要成对出现，有闭合标签存在
 6、根标签只能存在一个，必须只有一个根元素
+
+-->
+<!--
 7、元素由开始标签。元素体（文本/元素），结束标签组成
 8、标签命名规范 a）区分大小写 b) 不能使用空格、不能使用冒号 c)不建议以XML.xml.Xml 开头
 9、属性属于元素的一部分，只能出现在开始标签中
     1）属性的值是一个串
 -->
+
 <personas>
     <person id = "1" type = "test">
         <name>

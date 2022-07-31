@@ -30,8 +30,8 @@ public class JdbcUtil {
     public static Connection getConnection() {
         Connection conn = null;
         try {
-            Class.forName(driverClass);
-            conn = DriverManager.getConnection(url, username, password);
+            Class.forName(driverClass);//注册驱动
+            conn = DriverManager.getConnection(url, username, password);//获取连接
 
 
         } catch (ClassNotFoundException | SQLException e) {
