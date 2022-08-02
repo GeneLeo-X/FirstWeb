@@ -1,5 +1,6 @@
 package Demo03;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,5 +36,8 @@ public class QuickHttpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("使用了doPost方法");//底层其实还是使用的Service方法
         System.out.println("统一业务代码出口");
+        ServletContext servletContext = this.getServletContext();
+        servletContext.setAttribute("test-store","测试存储的值 ");
+
     }
 }
