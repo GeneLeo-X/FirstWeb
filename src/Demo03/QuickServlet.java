@@ -37,9 +37,9 @@ public class QuickServlet implements Servlet {
         System.out.println(" init method called...");
 
         //一个web应用只用一个servletContext对象
-        ServletContext servletContext = servletConfig.getServletContext();
+        //ServletContext servletContext = servletConfig.getServletContext();
         //servletContext对象获取资源的绝对路径
-        System.out.println("绝对路径：" + servletContext.getRealPath("img/picture01.jpg"));
+        //System.out.println("绝对路径：" + servletContext.getRealPath("img/picture01.jpg"));
     }
 
     @Override
