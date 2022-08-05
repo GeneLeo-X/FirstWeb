@@ -33,5 +33,9 @@
     <orderEntry type="library" name="dom4j-1.6.1" level="project" />
     <orderEntry type="library" name="jaxen-1.1.2" level="project" />
     <orderEntry type="library" name="Tomcat 9.0.16" level="application_server_libraries" />
+    <orderEntry type="library" name="commons-beanutils-1.9.4" level="project" />
+    <orderEntry type="library" name="commons-collections-3.2.2" level="project" />
+    <orderEntry type="library" name="commons-logging-1.2" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.9.3" level="project" />
   </component>
 </module>

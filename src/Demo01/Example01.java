@@ -39,7 +39,7 @@ public class Example01 {
                 东八区（UTC+8）
                 在数据库编码不是utf-8时是可以在url中加入"useUnicode=ture&characterEncoding=utf-8"解决中文乱码
              */
-            Connection conn =  DriverManager.getConnection("jdbc:mysql://localhost:3306/lxc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Harbin","root","root");
+            Connection conn =  DriverManager.getConnection("jdbc:mysql://localhost:3306/lxc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Harbin","root","666");
 
             //3、根据连接对象获取Statement  - 可以执行SQL语句的对象
             Statement stmt= conn.createStatement();
