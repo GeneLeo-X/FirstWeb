@@ -33,11 +33,14 @@ public class RegisterServlet extends HttpServlet {
             //将前端传递过来的表单数组，自动映射到JavaBean对象里
             BeanUtils.populate(user,parameterMap);//将请求信息与user对象的信息一一映射
             //数据库中若某列是存放多个值的话，   （xxx , xxx）以逗号分隔的
-            String[] hobbies = parameterMap.get("hobby");
-            System.out.println("电话号码："+ parameterMap.get("phone"));
+           String[] hobbies = parameterMap.get("hobby");
+//            System.out.println("电话号码："+ parameterMap.get("phone"));
 
             String hobby = Arrays.toString(hobbies);
             hobby = hobby.substring(1 , hobby.length() - 1);
+
+           // System.out.println(hobby);
+
             //自动映射之后，不满足的属性设定，可以单独再次处理
             user.setHobby(hobby);
         } catch (IllegalAccessException e) {
@@ -48,6 +51,14 @@ public class RegisterServlet extends HttpServlet {
         Integer row = register(user);//将user对象的信息存入数据库中返回影响的行数
         if(row > 0){
             System.out.println("注册成功！！！");
+            resp.sendRedirect(req.getContextPath() + "/login.html");
+
+
+        }
+        else{
+            System.out.println("注册失败！！！");
+            //getRequestDispatcher ：存放请求路径 - 相当是将处理交由其他页面或者Servlet类
+            req.getRequestDispatcher("/register.html").forward(req,resp); //注册失败，跳转回注册页面，重新注册
         }
 
     }
@@ -66,20 +77,14 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             QueryRunner qr = new QueryRunner(C3p0Pool.getDataSource());
-            System.out.println("----------------------");
-            System.out.println("Name:" + user.getName());
-            System.out.println("UserName:" + user.getUsername());
-            System.out.println("PassWord:" + user.getPassword());
-            System.out.println("Sex:" + user.getSex());
-            System.out.println("PhoneNumber:" + user.getPhone());
-            System.out.println("hobby:" + user.getHobby());
-            System.out.println("-----------------------");
-
-
-
-
-
-
+//            System.out.println("----------------------");
+//            System.out.println("Name:" + user.getName());
+//            System.out.println("UserName:" + user.getUsername());
+//            System.out.println("PassWord:" + user.getPassword());
+//            System.out.println("Sex:" + user.getSex());
+//            System.out.println("PhoneNumber:" + user.getPhone());
+//            System.out.println("hobby:" + user.getHobby());
+//            System.out.println("-----------------------");
 
             int rows = qr.update("insert into user values(null , ? , ? ,? ,? ,? ,?)"
                     , user.getName() , user.getUsername() , user.getPassword() , user.getSex() , user.getPhone() , user.getHobby());
