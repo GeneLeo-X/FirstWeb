@@ -2,14 +2,13 @@ package Demo04;
 
 import Demo02.pool.C3p0Pool;
 import Demo04.bean.User;
+import com.mysql.cj.Session;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,8 +25,14 @@ public class LoginServlet extends HttpServlet {
 //        System.out.println(username);
 //        System.out.println(password);
         User user = Login(username,password);
-        if(null != user)
+        if(null != user){
+            HttpSession session =req.getSession();
+            session.setAttribute("user",user);//使用session存入user对象信息
+
+
             resp.sendRedirect(req.getContextPath() + "/index.jsp");//登录成功，跳转到首页
+        }
+
         else
         {
             System.out.println("登录失败，请重新登录！！！");
