@@ -37,5 +37,7 @@
     <orderEntry type="library" name="commons-collections-3.2.2" level="project" />
     <orderEntry type="library" name="commons-logging-1.2" level="project" />
     <orderEntry type="library" name="commons-beanutils-1.9.3" level="project" />
+    <orderEntry type="library" name="standard" level="project" />
+    <orderEntry type="library" name="jstl" level="project" />
   </component>
 </module>
